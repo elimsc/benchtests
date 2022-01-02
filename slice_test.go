@@ -3,19 +3,19 @@ package benchtests_test
 import "testing"
 
 func BenchmarkSliceAppend(b *testing.B) {
-	// 34.58 ns/op
+	// 0.2750 ns/op
 	for i := 0; i < b.N; i++ {
-		a := []int{1, 2, 3}
+		a := []int{1, 2, 3, 0, 0, 0}
 		b := []int{4, 5, 6}
-		_ = append(a, b...)
+		_ = append(a[:3], b...)
 	}
 }
 
 func BenchmarkSliceCopy(b *testing.B) {
-	// 1.381 ns/op
+	// 0.2750 ns/op
 	for i := 0; i < b.N; i++ {
-		a := []int{1, 2, 3}
+		a := []int{1, 2, 3, 0, 0, 0}
 		b := []int{4, 5, 6}
-		copy(a[len(a):], b)
+		copy(a[3:], b)
 	}
 }
